@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Form, Button } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const Divline = styled.div`
@@ -20,15 +20,16 @@ const DivComment = styled.div`
 export default function BoardDetail() {
   let { id }  = useParams();
   const list = useSelector((state) => state.Community.list);
+  let navigate = useNavigate();
 
   return (
     <>
       <div className="container col-11 col-sm-10 col-mg-9 col-lg-8">
         <div className="d-flex align-middle mt-5">
           <Divline className="col-3 col-sm-1 mb-2"></Divline>
-          <div className="col-2 col-sm-1 text-center">일상</div>
-          <div className="col-2 col-sm-1 text-center">모임</div>
-          <div className="col-2 col-sm-1 text-center">전체</div>
+          <div className="col-2 col-sm-1 text-center" style={{cursor: 'pointer'}} onClick={() => navigate('/board/community/daily')}>일상</div>
+          <div className="col-2 col-sm-1 text-center" style={{cursor: 'pointer'}} onClick={() => navigate('/board/community/class')}>모임</div>
+          <div className="col-2 col-sm-1 text-center" style={{cursor: 'pointer'}} onClick={() => navigate('/board/community')}>전체</div>
           <Divline className="col-3 col-sm-8 mb-2"></Divline>
         </div>
 

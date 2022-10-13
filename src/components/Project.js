@@ -1,4 +1,5 @@
 import { Button, Dropdown } from "react-bootstrap"
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import styled from "styled-components"
 
@@ -14,6 +15,7 @@ const DivItem = styled.div`
 `
 
 export default function Project() {
+  let navigate = useNavigate();
   const Projectlist = useSelector((state) => state.Project.list);
 
   return (
@@ -49,7 +51,7 @@ export default function Project() {
         {
           Projectlist.map((el) => {
             return (
-              <DivItem key={el.id}>
+              <DivItem key={el.id} onClick={() => navigate(`detail/${el.id}`)}>
                 <div className="d-flex pt-2">
                   <p className="me-2">{el.name}</p>
                   <p className="me-2">{el.views}</p>
@@ -58,7 +60,8 @@ export default function Project() {
                 <h5 className="mb-3">{el.text}</h5>
                 <div className="mb-2">
                   {el.front === null ? <span></span> : <span className='me-2'>프론트 {el.front}/{el.frontMax}</span>}
-                  {el.back === null ? <span></span> : <span>백엔드 {el.back}/{el.backMax}</span>}
+                  {el.back === null ? <span></span> : <span className='me-2'>백엔드 {el.back}/{el.backMax}</span>}
+                  {el.etc === null ? <span></span> : <span>기타 {el.etc}/{el.etckMax}</span>}
                 </div>
               </DivItem>
             )

@@ -20,7 +20,7 @@ export default function Board() {
             Communitylist.map((el) => {
               return (
                 <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={el.id}
-                onClick={() => navigate(`community/detail/${el.id}`)}>
+                onClick={() => navigate(`community/detail/${el.id}`)} style={{cursor: 'pointer'}}>
                   <div className="ms-2 me-auto">
                     <div className="fw-bold">{el.text}</div>
                     {el.name}
@@ -132,11 +132,15 @@ export default function Board() {
               Projectlist.map((el) => {
                 return (
                   <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={el.id}
-                  >
+                  onClick={() => navigate(`project/detail/${el.id}`)} style={{cursor: 'pointer'}}>
                     <div className="ms-2 me-auto">
-                      <div className="fw-bold">{el.text}</div>
+                      <div className='d-flex'>
+                        <div className='fw-bold me-2'>{el.text}</div>
+                        <small> ~{el.lastDay}</small>
+                      </div>
                       {el.front === null ? <span></span> : <span className='me-2'>프론트 {el.front}/{el.frontMax}</span>}
-                      {el.back === null ? <span></span> : <span>백엔드 {el.back}/{el.backMax}</span>}
+                      {el.back === null ? <span></span> : <span className='me-2'>백엔드 {el.back}/{el.backMax}</span>}
+                      {el.etc === null ? <span></span> : <span>기타 {el.etc}/{el.etckMax}</span>}
                     </div>
                   </ListGroup.Item>
                 )

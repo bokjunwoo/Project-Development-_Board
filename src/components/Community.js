@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { Button, Dropdown, DropdownButton, ButtonGroup, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton, ButtonGroup } from "react-bootstrap";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import SelectBtn from "./SelectBtn";
 
 const Title = styled.h1`
   text-align: center;
@@ -45,11 +46,7 @@ function Community() {
         <DivWrite className="d-flex justify-content-between">
           <Button variant="primary" className="mb-4" onClick={() => navigate('write')}>작성하기</Button>
 
-          <ToggleButtonGroup type="radio" name="options" defaultValue={3} className='mb-4'>
-            <ToggleButton id="tbg-radio-1" value={1} variant="" className="ms-2 me-2 rounded">일상</ToggleButton>
-            <ToggleButton id="tbg-radio-2" value={2} variant="" className="ms-2 me-2 rounded">모임</ToggleButton>
-            <ToggleButton id="tbg-radio-3" value={3} variant="" className="ms-2 me-2 rounded">전체</ToggleButton>
-          </ToggleButtonGroup>
+          <SelectBtn />
 
           <ButtonGroup className="mb-4">
             <DropdownButton as={ButtonGroup} title="최신순" variant="light">
@@ -67,7 +64,7 @@ function Community() {
         {
           list.map((el) => {
             return (
-              <DivItem key={el.id} onClick={() => navigate(`detail/${el.id}`)}>
+              <DivItem key={el.id} onClick={() => navigate(`/board/community/detail/${el.id}`)}>
                 <div className="d-flex pt-2">
                   <p className="me-2">{el.name}</p>
                   <p className="me-2">{el.views}</p>
